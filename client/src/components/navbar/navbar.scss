@@ -9,6 +9,7 @@
 
   &.scrolled {
     background-color: var(--main-color);
+    transition: 0.3s;
   }
 
   .container {
