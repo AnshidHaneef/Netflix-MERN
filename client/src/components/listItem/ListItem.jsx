@@ -14,7 +14,6 @@ export default function ListItem() {
           src="https://www.themoviedb.org/t/p/original/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg"
           alt="poster"
         />
-      </div>
 
         <div className="listInfo">
           <div className="infoIcons">
@@ -33,6 +32,8 @@ export default function ListItem() {
           </div>
          <div className="genere"></div>
         </div>
+      </div>
+
     </>
   );
 }
