@@ -1,9 +1,42 @@
-.listItem{
-        margin-right: 8px;
+.listItem {
+  margin-right: 8px;
+  background-color: var(--main-color);
+  width: 180px;
+  height: 150px;
+  overflow: hidden;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  flex-direction: column;
 
-    img{
-        object-fit: cover;
-        width: 180px;
-        height: 150px;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  &:hover {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    // position: absolute;
+    top: -150px;
+    -webkit-box-shadow: 3px 0px 39px -20px rgba(255, 245, 255, 0.91);
+    -moz-box-shadow: 3px 0px 39px -20px rgba(255, 245, 255, 0.91);
+    box-shadow: 3px 0px 39px -20px rgba(255, 245, 255, 0.91);
+
+    img {
+      height: 170px;
     }
+  }
+
+  .listInfo {
+      display: flex;
+      flex-direction: column;
+
+    .infoIcons {
+      color: white;
+    }
+  }
 }
