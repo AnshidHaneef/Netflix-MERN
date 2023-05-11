@@ -38,7 +38,7 @@ const handleFinish = ()=>{
             </div>
             ):
             (
-                <form className="password">
+                <form className="input">
                 <input type="password" placeholder='Enter Password' ref = {passwordRef} />
                 <button className="registerButton" onClick={handleFinish}> Start </button>
                 </form>  
