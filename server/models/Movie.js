@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const movieSchema = new mongoose.Schema(
     {
-        movieName: {equired:true , type:String , unique:true },
+        title: {required:true , type:String , unique:true },
         desc: {type:String  },
         image: { type:String  },
         imageTitle: { type:String , default:'' },
@@ -16,5 +16,4 @@ const movieSchema = new mongoose.Schema(
     },
     {timestamps:true}
 )
-
 module.exports = mongoose.model('movie',movieSchema)
