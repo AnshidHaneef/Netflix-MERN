@@ -1,14 +1,20 @@
 const mongoose = require('mongoose')
 
-const userSchema = new mongoose.Schema(
+const listSchema = new mongoose.Schema(
     {
-        userName: {required:true , type:String , unique:true },
-        email: {required:true , type:String , unique:true },
-        password: {required:true , type:String  },
-        profilePic: { type:String , default:'' },
-        isAdmin: { type:Boolean , default:false }
+        listName: {equired:true , type:String , unique:true },
+        desc: {type:String  },
+        image: { type:String  },
+        imageTitle: { type:String , default:'' },
+        smallImage: { type:String  },
+        trailer: { type: String   },
+        video: { type:String  },
+        year: { type:String  },
+        limit: { type:String  },
+        genre: { type:String  },
+        isSeries: { type:Boolean , default: false  }
     },
     {timestamps:true}
 )
 
-module.exports = mongoose.model('user',userSchema)
+module.exports = mongoose.model('list',listSchema)
