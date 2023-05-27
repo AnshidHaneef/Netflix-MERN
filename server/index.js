@@ -14,13 +14,15 @@ mongoose.connect(process.env.MONGO_URL,{
 })
   .then(() => console.log('Connected!'));
   
-app.listen(3000,()=>{
-    console.log('server running on port http://localhost:3000');
+app.listen(8800,()=>{
+    console.log('server running on port http://localhost:8800');
 })
 
 
 app.use(express.json())
-app.use('/server/auth' , authRoute)
+app.use(express.urlencoded({ extended: false }));
+
+app.use('/auth' , authRoute)
 
 
 // app.get('/',(req,res)=>{

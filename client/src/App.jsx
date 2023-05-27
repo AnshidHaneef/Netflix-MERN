@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <Home/>
-      <Watch /> 
-    <Register/>
-    <Login/>
+      {/* <Watch />  */}
+    {/* <Register/> */}
+    {/* <Login/> */}
     </div>
   );
 }
