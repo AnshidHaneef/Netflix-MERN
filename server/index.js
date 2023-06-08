@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
+const userRoute = require('./routes/users')
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/auth' , authRoute)
+app.use('/users' , userRoute)
 
 
 // app.get('/',(req,res)=>{
