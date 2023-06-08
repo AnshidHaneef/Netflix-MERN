@@ -4,8 +4,8 @@ const CryptoJS = require('crypto-js')
 const verify = require('../verifyToken')
 
 // Update
-router.put('/:id',verify, async (req, res) => {
-    console.log('req.user',req.user);
+router.put('/:id', verify, async (req, res) => {
+    console.log('req.user', req.user);
 
     if (req.user.id === req.params.id || req.user.isAdmin) {
         if (req.body.password) {
@@ -13,7 +13,7 @@ router.put('/:id',verify, async (req, res) => {
         }
         try {
             const updateUser = await User.findByIdAndUpdate(req.params.id,
-                {$set:req.body},{new:true}
+                { $set: req.body }, { new: true }
             )
             res.status(200).json(updateUser)
 
@@ -28,10 +28,10 @@ router.put('/:id',verify, async (req, res) => {
 
 // Delete
 
-router.delete('/:id',verify, (req,res)=>{
+router.delete('/:id', verify, async (req, res) => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
         try {
-             User.findByIdAndDelete(req.params.id)
+            await User.findByIdAndDelete(req.params.id)
             res.status(200).json('User deleted successfully')
 
         } catch (error) {
@@ -43,25 +43,30 @@ router.delete('/:id',verify, (req,res)=>{
 })
 
 // Get By Id 
-router.get('/:id',verify, async(req,res)=>{
-    if(req.user.id === req.params.id || req.user.isAdmin){
-        try {
-            const user = await User.findById(req.params.id)
-            res.status(200).json(user)
-        } catch (error) {
-            res.status(401).json('cannot find User')
-        }
+router.get('/find/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        const { password, ...info } = user._doc;
+        res.status(200).json(info)
+    } catch (error) {
+        res.status(401).json('cannot find User')
     }
 })
 
 // Get All
-router.get('/',async (req,res)=>{
+router.get('/find', verify, async (req, res) => {
+    const query = req.query.new
+    if (req.user.isAdmin) {
         try {
-          const userss =   await User.find()
+            const userss = query ? await User.find().sort({ _id: 1 }).limit(3) : await User.find()
             res.status(200).json(userss)
+            
         } catch (error) {
             res.status(500).json(error)
         }
+    } else {
+        res.status(403).json('you are not allowed to see all users')
+    }
 })
 
 // Get User Stats 
