@@ -58,9 +58,9 @@ router.get('/find', verify, async (req, res) => {
     const query = req.query.new
     if (req.user.isAdmin) {
         try {
-            const userss = query ? await User.find().sort({ _id: 1 }).limit(3) : await User.find()
+            const userss = query ? await User.find().sort({ _id: 1 }).limit(8) : await User.find()
             res.status(200).json(userss)
-            
+
         } catch (error) {
             res.status(500).json(error)
         }
@@ -69,8 +69,41 @@ router.get('/find', verify, async (req, res) => {
     }
 })
 
-// Get User Stats 
+// Get User Stats  ||  Total Users per Month ...
+router.get('/stats',async(req,res)=>{
+    const date = new Date()
+    const lastYear = date.setFullYear(date.setFullYear() -1 )   /* This gives Last years stats */
 
+    const month = [
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december',
+    ]
+
+    try {
+        const data = await User.aggregate([
+            {$project:{
+                month:{$month:'$createdAt'}
+            }},
+            {$group:{
+                _id:'$month',
+                total:{$sum:1}
+            }}
+        ])
+            res.status(200).json(data)
+    } catch (error) {
+        res.status(403).json('you Are Not Allowed to get User Stats')
+    }
+})
 
 
 module.exports = router
