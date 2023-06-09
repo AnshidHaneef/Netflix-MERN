@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
-const movieRoute = require('./models/Movie')
+const movieRoute = require('./routes/movies')
 
 dotenv.config()
 
