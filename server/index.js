@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/auth' , authRoute)
 app.use('/users' , userRoute)
-app.use('/movie',movieRoute)
+app.use('/movies',movieRoute)
 
 
 // app.get('/',(req,res)=>{

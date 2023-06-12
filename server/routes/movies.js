@@ -38,30 +38,6 @@ router.put('/:id', verify, async (req, res) => {
 })
 
 
-// Delete
-router.delete('/:id', verify, async (req, res) => {
-    if (req.user.isAdmin) {
-        try {
-            await Movie.findByIdAndDelete(req.params.id)
-            res.status(200).json('movie deleted successfully')
-
-        } catch (error) {
-            res.status(500).json(error)
-        }
-    } else {
-        res.status(403).json('you are not Allowed to Delete a Movie!')
-    }
-})
-
-// Get 
-router.get('/find', verify, async (req, res) => {
-    try {
-        const movies = await Movie.find()
-        res.status(200).json(movies)
-    } catch (error) {
-        res.status(500).json(error)
-    }
-})
 
 // Get By Id
 router.get('/find/:id', verify, async (req, res) => {
@@ -94,7 +70,7 @@ router.get('/random', verify, async (req, res) => {
         } else {
             randomMovie = await Movie.aggregate([
                 {
-                    $mathch: { isSeries: false }
+                    $match: { isSeries: false }
                 },
                 {
                     $sample: { size: 1 }
@@ -103,6 +79,7 @@ router.get('/random', verify, async (req, res) => {
         }
         res.status(200).json(randomMovie)
     } catch (error) {
+        console.log(error);
         res.status(500).json(error)
     }
 })
