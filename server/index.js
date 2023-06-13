@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const movieRoute = require('./routes/movies')
+const listRoute = require('./routes/lsits')
 
 dotenv.config()
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/auth' , authRoute)
 app.use('/users' , userRoute)
 app.use('/movies',movieRoute)
+app.use('/list',listRoute)
 
 
 // app.get('/',(req,res)=>{

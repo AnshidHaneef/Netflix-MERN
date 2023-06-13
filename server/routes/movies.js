@@ -9,7 +9,6 @@ router.post('/', verify, async (req, res) => {
         try {
             const savedMovie = await newMovie.save()
             res.status(201).json(savedMovie)
-
         } catch (error) {
             res.status(500).json(error)
         }
@@ -57,7 +56,7 @@ router.delete('/:id', verify, async (req, res) => {
 router.get('/find', verify, async (req, res) => {
     try {
         const movies = await Movie.find()
-        res.status(200).json(movies)
+        res.status(200).json(movies.reverse())
     } catch (error) {
         console.log('error :::::::',error);
         res.status(500).json(error)
