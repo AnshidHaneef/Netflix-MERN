@@ -10,6 +10,7 @@ function verify(req, res, next) {
                 res.status(403).json('token is not valid')
             }else{
                 req.user = user
+                console.log('userrrr',user);
                 next()
             }
         })
