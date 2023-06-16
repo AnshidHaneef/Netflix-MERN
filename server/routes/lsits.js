@@ -46,7 +46,6 @@ router.get("/find", verify, async (req, res) => {
 });
 
 
-
 // Delete List
 router.delete('/:id', verify, async (req, res) => {
 
