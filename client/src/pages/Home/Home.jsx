@@ -22,7 +22,6 @@ useEffect(()=>{
   }  
 })
 
-
   return (
 
     <div className='home'>
