@@ -9,18 +9,6 @@ import { use } from '../../../../server/routes/lsits'
 
 function  Home({type}) {
 
-  const[List,setList] = useState([])
-useEffect(()=>{
-  const getRandomList = async () =>{
-    try {
-     const res = await axios.get(
-      `lists${ type ? "?type" + type : "" } ${genre ? "&genre=" + genre: "" } `
-      )
-    } catch (error) {
-      console.log(error);
-    }
-  }  
-})
 
   return (
 
