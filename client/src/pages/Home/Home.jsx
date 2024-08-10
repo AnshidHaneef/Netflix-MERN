@@ -10,6 +10,7 @@ import { use } from '../../../../server/routes/lsits'
 function  Home({type}) {
 
   const[List,setList] = useState([])
+  
 useEffect(()=>{
   const getRandomList = async () =>{
     try {
@@ -23,8 +24,8 @@ useEffect(()=>{
 })
 
   return (
-
     <div className='home'>
+      
       <Navbar/>
       <Featured type ={type}/>
       <List/>
@@ -33,6 +34,7 @@ useEffect(()=>{
       <List/>
       <List/>
       <List/>
+
     </div>
   )
 }
